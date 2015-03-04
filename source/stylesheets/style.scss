@@ -1,0 +1,44 @@
+html {
+  min-width: 1040px;
+  margin: 0;
+}
+
+body {
+  font: 18px/1.5em "Helvetica Neue", Helvetica, sans-serif;
+  margin: 1em 0 4em 0;
+}
+
+h1, h2, h2, h4, h5, h6, p {
+  font-weight: 200;
+}
+
+.container {
+  margin: 1em;
+}
+
+.content {
+  width: 570px;
+}
+
+footer {
+  background-image: linear-gradient(-45deg, #DCDCDC 25%, transparent 25%, transparent 50%, #999 50%, #999 75%, transparent 75%, transparent);
+  background-size: 8px 8px;
+  width: 100%;
+  height: 55px;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 1em;
+  h2 {
+    font-weight: 200;
+    background-color: #fff;
+    width: 200px;
+    margin: 10px;
+    padding: 0.2em;
+  }
+}
+
+path, .path, .line {
+  stroke: #fff;
+}
