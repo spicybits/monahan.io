@@ -30,7 +30,7 @@ $sidebar_width: 240px;
   footer {
     background-image: linear-gradient(-45deg, #DCDCDC 25%, transparent 25%, transparent 50%, #999 50%, #999 75%, transparent 75%, transparent);
     background-size: 8px 8px;
-	position: fixed;
+	  position: fixed;
     width: $sidebar_width;
     height: 75px;
     text-align: right;
@@ -47,6 +47,15 @@ $sidebar_width: 240px;
 }
 #sidebar {
   padding: 20px;
+	h2.name {
+		a {
+		  color: inherit;
+		  text-decoration: inherit;
+			&:hover {
+				color: lighten(black, 28%);
+			}
+		}
+	}
 }
 
 span.github-mark {
@@ -109,7 +118,6 @@ hr.flared {
 		bottom: 100px;
 		li {
 			text-align: right;
-			
 		}
 	}
 }
