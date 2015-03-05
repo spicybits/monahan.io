@@ -1,0 +1,15 @@
+---
+title: Solr Search Integration on Drupal
+date: 2015-03-05 19:57 UTC
+tags: howto, site building, case study
+---
+
+%p This post accompanies  #{link_to 'a talk', 'http://drupaluser.umd.edu/node/160'} I gave at the March 2015 #{link_to 'UMD Drupal Users Group', 'http://drupaluser.umd.edu'} meeting.
+
+%hr
+
+%h3 Setting up Solr
+
+%p This tutorial is going to assume that you're working in a UNIX environment.  I'll be using a RHEL7 machine.
+
+%p Solr is written in Java, so there are a few different options for deployment.  There's a standalone web server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.
