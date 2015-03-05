@@ -45,8 +45,15 @@ h1, h2, h2, h4, h5, h6, p {
 /* line 48, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 #sidebar {
   padding: 20px; }
+  /* line 51, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  #sidebar h2.name a {
+    color: inherit;
+    text-decoration: inherit; }
+    /* line 54, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+    #sidebar h2.name a:hover {
+      color: #474747; }
 
-/* line 52, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 61, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 span.github-mark {
   background: url("/images/GitHub-Mark-120px-plus.png");
   background-size: 32px 32px;
@@ -55,11 +62,11 @@ span.github-mark {
   width: 32px;
   height: 32px; }
 
-/* line 61, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 70, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 path, .path, .line {
   stroke: #fff; }
 
-/* line 65, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 74, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 hr.flared {
   height: 30px;
   border-style: solid;
@@ -67,7 +74,7 @@ hr.flared {
   border-width: 1px 0 0 0;
   border-radius: 20px;
   margin-bottom: -15px; }
-  /* line 72, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 81, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   hr.flared:before {
     display: block;
     content: "";
@@ -81,24 +88,24 @@ hr.flared {
 /*
  * blog stuff
  */
-/* line 90, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 99, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 .articles article h1.title {
   font-size: 22px; }
-  /* line 92, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 101, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .articles article h1.title a {
     text-decoration: none; }
-  /* line 95, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 104, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .articles article h1.title time {
     float: right;
     font-size: 18px;
     color: #3F424F; }
 
-/* line 105, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 114, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 #sidebar-wrapper ul.tags {
   width: 180px;
   list-style-type: none;
   position: fixed;
   bottom: 100px; }
-  /* line 110, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 119, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   #sidebar-wrapper ul.tags li {
     text-align: right; }
