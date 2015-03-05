@@ -1,0 +1,14 @@
+---
+title: Recent Blog Posts
+---
+
+<div class="articles">
+	<% blog.articles[0...5].each do |article| %>
+	  <article>
+	    <h1 class="title">
+	      <a href="<%= article.url %>"><%= article.title %></a>
+	      <time><%= article.date.strftime('%b %e %Y') %></time>
+	    </h1>
+	  </article>
+	<% end %>
+</div>

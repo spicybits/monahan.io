@@ -16,18 +16,28 @@
   </head>
   
   <body class="<%= page_classes %>">
-	<div id="sidebar-wrapper">
-		<div id="sidebar">
-			<h2>Liam Monahan</h2>
-			<a href="https://github.com/liammonahan"><span class="mark github-mark"></span></a>
+	  <div id="sidebar-wrapper">
+			<div id="sidebar">
+				<h2>Liam Monahan</h2>
+				<a href="https://github.com/liammonahan"><span class="mark github-mark"></span></a>
+			</div>
+			<% if current_page.tags %>
+			<ul class="tags">
+			  <li><b>Tags</b></li>
+				<% current_page.tags.each do |tag| %>
+				  <li><%= tag %></li>
+				<% end %>
+			</ul>
+			<% end %>
+	    <footer>
+	  		  <h2>monahan.io</h2>
+	  	</footer>
 		</div>
-      	<footer>
-  		  <h2>monahan.io</h2>
-  		</header>
-	</div>
   	<div class="container">
   		<div class="content">
+		  <%= link_to '< Back to all posts', '/blog' %>
 		  <h2><%= current_page.data.title %></h2>
+		  <h4><%= current_page.date.strftime('%B %e, %Y') %></h4>
 		  <hr class="flared" />
   	      <%= yield %>
   		</div>

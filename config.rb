@@ -27,9 +27,9 @@
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-# configure :development do
-#   activate :livereload
-# end
+configure :development do
+  activate :livereload
+end
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -41,6 +41,13 @@
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
+
+activate :blog do |b|
+  #b.permalink = "blog/:title.html"
+  #b.sources = "posts/:title.html"
+  b.prefix = "blog"
+  b.layout = "blog_layout"
+end
 
 # Build-specific configuration
 configure :build do
@@ -55,6 +62,10 @@ configure :build do
 
   # Use relative URLs
   # activate :relative_assets
+
+  # tell Middleman to create a folder for each .html file and place the
+  # built template file as the index of that folder
+  # activate :directory_indexes
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
