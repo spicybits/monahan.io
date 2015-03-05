@@ -1,45 +1,104 @@
 /* line 1, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 html {
-  min-width: 1040px;
   margin: 0; }
 
-/* line 6, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 5, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 body {
-  font: 18px/1.5em "Helvetica Neue", Helvetica, sans-serif;
-  margin: 1em 0 4em 0;
-  background-color: blanchedalmond; }
+  font: 18px/1.5em "Helvetica Neue", Helvetica, sans-serif; }
 
-/* line 12, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 9, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 h1, h2, h2, h4, h5, h6, p {
   font-weight: 200; }
 
 /* line 16, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
-.container {
-  margin: 1em; }
-
-/* line 20, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 .content {
-  width: 570px; }
+  width: 600px;
+  position: absolute;
+  top: 50px;
+  left: 290px; }
 
 /* line 24, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
-footer {
-  background-image: linear-gradient(-45deg, #DCDCDC 25%, transparent 25%, transparent 50%, #999 50%, #999 75%, transparent 75%, transparent);
-  background-size: 8px 8px;
-  width: 100%;
-  height: 55px;
-  text-align: right;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 1em; }
-  /* line 34, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
-  footer h2 {
-    font-weight: 200;
-    background-color: #fff;
-    width: 200px;
-    margin: 10px;
-    padding: 0.2em; }
+#sidebar-wrapper {
+  width: 240px;
+  height: 100vh;
+  border-right: 1px solid #DABF97;
+  background-color: blanchedalmond;
+  position: fixed; }
+  /* line 30, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  #sidebar-wrapper footer {
+    background-image: linear-gradient(-45deg, #DCDCDC 25%, transparent 25%, transparent 50%, #999 50%, #999 75%, transparent 75%, transparent);
+    background-size: 8px 8px;
+    position: fixed;
+    width: 240px;
+    height: 75px;
+    text-align: right;
+    bottom: 20px;
+    left: 0; }
+    /* line 39, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+    #sidebar-wrapper footer h2 {
+      font-weight: 200;
+      background-color: #fff;
+      width: 200px;
+      margin: 20px 0 20px 29px;
+      padding: 0.2em; }
 
-/* line 43, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 48, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+#sidebar {
+  padding: 20px; }
+
+/* line 52, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+span.github-mark {
+  background: url("/images/GitHub-Mark-120px-plus.png");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 32px;
+  height: 32px; }
+
+/* line 61, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 path, .path, .line {
   stroke: #fff; }
+
+/* line 65, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+hr.flared {
+  height: 30px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+  margin-bottom: -15px; }
+  /* line 72, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  hr.flared:before {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -27px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px; }
+
+/*
+ * blog stuff
+ */
+/* line 90, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+.articles article h1.title {
+  font-size: 22px; }
+  /* line 92, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  .articles article h1.title a {
+    text-decoration: none; }
+  /* line 95, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  .articles article h1.title time {
+    float: right;
+    font-size: 18px;
+    color: #3F424F; }
+
+/* line 105, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+#sidebar-wrapper ul.tags {
+  width: 180px;
+  list-style-type: none;
+  position: fixed;
+  bottom: 100px; }
+  /* line 110, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  #sidebar-wrapper ul.tags li {
+    text-align: right; }
