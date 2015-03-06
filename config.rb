@@ -51,6 +51,10 @@ activate :blog do |b|
   b.layout = "blog_layout"
 end
 
+# tell Middleman to create a folder for each .html file and place the
+# built template file as the index of that folder
+activate :directory_indexes
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -64,10 +68,6 @@ configure :build do
 
   # Use relative URLs
   # activate :relative_assets
-
-  # tell Middleman to create a folder for each .html file and place the
-  # built template file as the index of that folder
-  # activate :directory_indexes
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
