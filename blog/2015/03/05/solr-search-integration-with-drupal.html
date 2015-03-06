@@ -11,7 +11,7 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>Solr Search Integration on Drupal</title>
     
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/style.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/syntax-highlight.css" rel="stylesheet" type="text/css" />
     <script src="/javascripts/all.js" type="text/javascript"></script>
   </head>
   
@@ -33,17 +33,27 @@
 		</div>
   	<div class="container">
   		<div class="content">
-		  <a href="/blog">< Back to all posts</a>
-		  <h2>Solr Search Integration on Drupal</h2>
-		  <h4>March  5, 2015</h4>
-		  <hr class="flared" />
-  	      <p>This post accompanies  <a href="http://drupaluser.umd.edu/node/160">a talk</a> I gave at the March 2015 <a href="http://drupaluser.umd.edu">UMD Drupal Users Group</a> meeting.</p>
+			  <a href="/blog">< Back to all posts</a>
+				<article>
+				  <h2 class="title">Solr Search Integration on Drupal</h2>
+				  <h4 class="date">March  5, 2015</h4>
+			    <p class='note'>This post accompanies  <a href="http://drupaluser.umd.edu/node/160">a talk</a> I gave at the March 2015 <a href="http://drupaluser.umd.edu">UMD Drupal Users Group</a> meeting.  This is my penance for not providing slides during that talk.</p>
 <hr>
 <h3>Setting up Solr</h3>
 <p>This tutorial is going to assume that you're working in a UNIX environment.  I'll be using a RHEL7 machine.</p>
-<p>Solr is written in Java, so there are a few different options for deployment.  There's a standalone web server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.</p>
+<p><a href="http://lucene.apache.org/solr/">Solr</a> is written in Java, so there are a few different options for deployment.  There's a standalone server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.  We are going to use the standalone server.</p>
+<p class='warning'><b>Note:</b> The <a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search module</a> currently only supports Solr 3.x and 4.x, so we are going to roll with Solr 4.9.0, even though 5.x just came out.</p>
+<p>First, let's go and download Solr 4.9.0 and extract it.</p>
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /tmp&#x000A;<span class="gp">$ </span>wget https://archive.apache.org/dist/lucene/solr/4.9.0/solr-4.9.0.tgz&#x000A;<span class="gp">$ </span>tar xzf solr-4.9.0.tgz&#x000A;</code></pre>
+<p>Great!  Everything got extracted into <tt>/tmp/solr-4.9.0/</tt>.  There's lots of interesting stuff inside, but we are mainly interested in <tt>./example/</tt>.</p>
+<p>Copy <tt>/tmp/solr-4.9.0/example/</tt> somewhere less transitory.</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>mkdir /srv <span class="o">&amp;&amp;</span> cp -r /tmp/solr-4.9.0/example/ /srv/solr/&#x000A;</code></pre>
+<h3>Setting up Solr to work with Drupal</h3>
+<p>Configuration for each collection is held in the <tt>conf</tt> subdirectory.  The Search API Solr module contains special configuration to be used with Drupal.  Next, let's download the module and move the configs into place.</p>
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /tmp <span class="o">&amp;&amp;</span> wget http://ftp.drupal.org/files/projects/search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="gp">$ </span>tar xzf search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="gp">$ </span>cp /tmp/search_api_solr/solr-conf/4.x/<span class="k">*</span> /srv/solr/solr/collection1/conf/&#x000A;</code></pre>
 
-  		</div>
+		  	</article>	
+			</div>
   	</div>
   </body>
 </html>
