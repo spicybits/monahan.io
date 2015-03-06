@@ -10,24 +10,27 @@ h1, h2, h2, h4, h5, h6, p {
   font-weight: 200;
 }
 
+$sidebar_width: 240px;
+$sidebar_height: 70px;
+
 .container {
+  padding: $sidebar_height + 20px 20px 20px 20px;
 }
 
 .content {
-  width: 660px;
-  position: absolute;
-  top: 50px;
-  left: 290px;
 }
 
-$sidebar_width: 240px;
+$sidebar_border_width: 1px;
+$sidebar_border_stroke: solid;
+$sidebar_border_color: #DABF97;
 #sidebar-wrapper {
-  width: $sidebar_width;
-  height: 100vh;
-  border-right: 1px solid #DABF97;
+  width: 100%;
+  height: $sidebar_height;
+  border-bottom: $sidebar_border_width $sidebar_border_stroke $sidebar_border_color;
   background-color: blanchedalmond;
   position: fixed;
   footer {
+    visibility: hidden;  /* display only at larger viewports */
     background-image: linear-gradient(-45deg, #DCDCDC 25%, transparent 25%, transparent 50%, #999 50%, #999 75%, transparent 75%, transparent);
     background-size: 8px 8px;
 	  position: fixed;
@@ -48,6 +51,8 @@ $sidebar_width: 240px;
 #sidebar {
   padding: 20px;
 	h2.name {
+    float: left;
+    margin: 0;
 		a {
 		  color: inherit;
 		  text-decoration: inherit;
@@ -77,6 +82,10 @@ $sidebar_width: 240px;
 	}
 }
 
+span.mark {
+  float: right;
+}
+
 span.github-mark {
 	background: url('/images/GitHub-Mark-120px-plus.png');
 	background-size: 32px 32px;
@@ -101,7 +110,7 @@ hr.flared {
     display: block;
     content: "";
     height: 30px;
-    margin-top: -27px;
+    margin-top: -31px;
     border-style: solid;
     border-color: black;
     border-width: 0 0 1px 0;
@@ -129,18 +138,6 @@ hr.flared {
 	}
 }
 
-#sidebar-wrapper {
-	ul.tags {
-		width: $sidebar_width - 60px;
-		list-style-type: none;
-		position: fixed;
-		bottom: 100px;
-		li {
-			text-align: right;
-		}
-	}
-}
-
 article {
 	.title {
     margin-bottom: 10px;
@@ -150,7 +147,53 @@ article {
 		margin-top: 0;
 		padding-top: 0;
 	}
+	ul.tags {
+    font-size: 15px;
+		list-style-type: none;
+    padding: 0 10px 0 0;
+		li {
+      display: inline-block;
+      margin: 0 5px 0 0;
+		}
+	}
   h1, h2, h3, h4, h5, h6 {
     margin-bottom: -10px;
+  }
+}
+
+
+
+
+/*
+ * Let's make this party responsive!
+ */
+
+@media (min-width: 600px) {
+  .content {
+    width: 560px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .container {
+    padding-left: $sidebar_width;
+  }
+  #sidebar-wrapper {
+    width: $sidebar_width;
+    height: 100vh;
+    border-bottom: none;
+    border-right: $sidebar_border_width $sidebar_border_stroke $sidebar_border_color;
+    footer {
+      visibility: visible;
+    }
+  }
+  #sidebar {
+    h2.name {
+      margin: 20px 0;
+    }
+  }
+  span.mark {
+    float: none;
   }
 }
