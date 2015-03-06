@@ -4,12 +4,44 @@ date: 2015-03-05 19:57 UTC
 tags: howto, site building, case study
 ---
 
-%p This post accompanies  #{link_to 'a talk', 'http://drupaluser.umd.edu/node/160'} I gave at the March 2015 #{link_to 'UMD Drupal Users Group', 'http://drupaluser.umd.edu'} meeting.
+%p.note This post accompanies  #{link_to 'a talk', 'http://drupaluser.umd.edu/node/160'} I gave at the March 2015 #{link_to 'UMD Drupal Users Group', 'http://drupaluser.umd.edu'} meeting.  This is my penance for not providing slides during that talk.
 
 %hr
 
-%h3 Setting up Solr
+%h3	Setting up Solr
 
 %p This tutorial is going to assume that you're working in a UNIX environment.  I'll be using a RHEL7 machine.
 
-%p Solr is written in Java, so there are a few different options for deployment.  There's a standalone web server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.
+%p #{link_to 'Solr', 'http://lucene.apache.org/solr/'} is written in Java, so there are a few different options for deployment.  There's a standalone server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.  We are going to use the standalone server.
+
+%p.warning <b>Note:</b> The #{link_to 'Search API Solr Search module', 'https://www.drupal.org/project/search_api_solr'} currently only supports Solr 3.x and 4.x, so we are going to roll with Solr 4.9.0, even though 5.x just came out.
+
+%p First, let's go and download Solr 4.9.0 and extract it.
+
+:code
+  # lang: bash
+  $ cd /tmp
+  $ wget https://archive.apache.org/dist/lucene/solr/4.9.0/solr-4.9.0.tgz
+  $ tar xzf solr-4.9.0.tgz
+-
+
+%p Great!  Everything got extracted into <tt>/tmp/solr-4.9.0/</tt>.  There's lots of interesting stuff inside, but we are mainly interested in <tt>./example/</tt>.  
+
+%p Copy <tt>/tmp/solr-4.9.0/example/</tt> somewhere less transitory.
+
+:code
+  # lang: bash
+  $ mkdir /srv && cp -r /tmp/solr-4.9.0/example/ /srv/solr/
+-
+
+
+%h3 Setting up Solr to work with Drupal
+
+%p Configuration for each collection is held in the <tt>conf</tt> subdirectory.  The Search API Solr module contains special configuration to be used with Drupal.  Next, let's download the module and move the configs into place.
+
+:code
+  # lang: bash
+  $ cd /tmp && wget http://ftp.drupal.org/files/projects/search_api_solr-7.x-1.6.tar.gz
+  $ tar xzf search_api_solr-7.x-1.6.tar.gz
+  $ cp /tmp/search_api_solr/solr-conf/4.x/* /srv/solr/solr/collection1/conf/
+-

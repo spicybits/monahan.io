@@ -11,7 +11,7 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= current_page.data.title || "Liam Monahan" %></title>
     
-    <%= stylesheet_link_tag "normalize", "style" %>
+    <%= stylesheet_link_tag "normalize", "style", "syntax-highlight" %>
     <%= javascript_include_tag  "all" %>
   </head>
   
@@ -35,12 +35,13 @@
 		</div>
   	<div class="container">
   		<div class="content">
-		  <%= link_to '< Back to all posts', '/blog' %>
-		  <h2><%= current_page.data.title %></h2>
-		  <h4><%= current_page.date.strftime('%B %e, %Y') %></h4>
-		  <hr class="flared" />
-  	      <%= yield %>
-  		</div>
+			  <%= link_to '< Back to all posts', '/blog' %>
+				<article>
+				  <h2 class="title"><%= current_page.data.title %></h2>
+				  <h4 class="date"><%= current_page.date.strftime('%B %e, %Y') %></h4>
+			    <%= yield %>
+		  	</article>	
+			</div>
   	</div>
   </body>
 </html>

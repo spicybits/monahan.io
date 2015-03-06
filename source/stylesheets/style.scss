@@ -10,6 +10,29 @@ h1, h2, h2, h4, h5, h6, p {
   font-weight: 200;
 }
 
+p {
+	
+}
+
+.note, .warning {
+	padding: 10px;
+}
+.note {
+	border: 2px solid #F5D0A9;
+	background-color: #CEF6D8;
+}
+.warning {
+	border: 2px solid #F58779;
+	background-color: #BF4212;
+	color: darken(white, 5%);
+	a, a:visited {
+		color: darken(white, 30%);
+		&:hover {
+			color: darken(white, 45%);
+		}
+	}
+}
+
 .container {
 }
 
@@ -120,4 +143,18 @@ hr.flared {
 			text-align: right;
 		}
 	}
+}
+
+article {
+	.title {
+    margin-bottom: 10px;
+		padding-bottom: 0;
+	}
+	.date {
+		margin-top: 0;
+		padding-top: 0;
+	}
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: -10px;
+  }
 }
