@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Solr Search Integration on Drupal</title>
+    
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/style.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/syntax-highlight.css" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+  </head>
+  
+  <body class="blog blog_2015 blog_2015_03 blog_2015_03_11 blog_2015_03_11_solr-search-integration-with-drupal blog_2015_03_11_solr-search-integration-with-drupal_index">
+	  <div id="sidebar-wrapper">
+			<div id="sidebar">
+				<h2 class="name"><a href="/">Liam Monahan</a></h2>
+				<a href="https://github.com/liammonahan"><span class="mark github-mark"></span></a>
+			</div>
+	    <footer>
+	  		<h2>monahan.io</h2>
+	  	</footer>
+		</div>
+  	<div class="container">
+  		<div class="content">
+			  <a href="/blog">< Back to all posts</a>
+				<article>
+				  <h2 class="title">Solr Search Integration on Drupal</h2>
+				  <h4 class="date">March 11, 2015</h4>
+    			<ul class="tags">
+    			  <li><b>Tags</b></li>
+    				  <li>howto</li>
+    				  <li>site building</li>
+    				  <li>case study</li>
+    			</ul>
+			    <p class='note'>This post accompanies  <a href="http://drupaluser.umd.edu/node/160">a talk</a> I gave at the March 2015 <a href="http://drupaluser.umd.edu">UMD Drupal Users Group</a> meeting.  This is my penance for not providing slides during that talk.</p>
+<hr>
+<h3>Setting up Solr</h3>
+<p>This tutorial is going to assume that you're working in a UNIX environment.  I'll be using a RHEL7 machine.</p>
+<p class='info'>Solr is a Java application, so grab a Java Runtime if you don't have one installed already.</p>
+<p><a href="http://lucene.apache.org/solr/">Solr</a> is written in Java, so there are a few different options for deployment.  There's a standalone server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.  We are going to use the standalone server.</p>
+<p class='warning'><b>Note:</b> The <a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search module</a> currently only supports Solr 3.x and 4.x, so we are going to roll with Solr 4.9.0, even though 5.x just came out.</p>
+<p>First, let's go and download Solr 4.9.0 and extract it.</p>
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /tmp&#x000A;<span class="gp">$ </span>wget https://archive.apache.org/dist/lucene/solr/4.9.0/solr-4.9.0.tgz&#x000A;<span class="gp">$ </span>tar xzf solr-4.9.0.tgz&#x000A;</code></pre>
+<p>Great!  Everything got extracted into <tt>/tmp/solr-4.9.0/</tt>.  There's lots of interesting stuff inside, but we are mainly interested in <tt>./example/</tt>.</p>
+<p>Copy <tt>/tmp/solr-4.9.0/example/</tt> somewhere less transitory.  I like using <tt>/srv/</tt> for this kind of thing, but <em>you do you</em>.</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>mkdir /srv <span class="o">&amp;&amp;</span> cp -r /tmp/solr-4.9.0/example/ /srv/solr/&#x000A;</code></pre>
+<h3>Setting up Solr to work with Drupal</h3>
+<p>The Search API Solr module contains configuration files to be used with Solr.  Configuration for each Solr collection is held in the <tt>conf</tt> subdirectory.  Let's download the module and move the configs into place.</p>
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /tmp <span class="o">&amp;&amp;</span> wget http://ftp.drupal.org/files/projects/search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="gp">$ </span>tar xzf search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="gp">$ </span>cp /tmp/search_api_solr/solr-conf/4.x/<span class="k">*</span> /srv/solr/solr/collection1/conf/&#x000A;</code></pre>
+<p>We <b><em>could</em></b> start Solr by running:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /srv/solr <span class="o">&amp;&amp;</span> java -jar start.jar &#x000A;</code></pre>
+<p>If you're running CentOS/RHEL, make a <tt>systemd</tt> service script while you're at it to start/stop/reload the service by populating <tt>/etc/systemd/system/solrd.service</tt> as follows:</p>
+<pre class="highlight ini"><code><span class="nn">[Unit]</span>&#x000A;<span class="py">Description</span><span class="p">=</span><span class="s">Apache Solr Service</span>&#x000A;<span class="py">After</span><span class="p">=</span><span class="s">network.target</span>&#x000A;&#x000A;<span class="nn">[Service]</span>&#x000A;<span class="py">ExecStart</span><span class="p">=</span><span class="s">/srv/solr/start.sh</span>&#x000A;<span class="py">Type</span><span class="p">=</span><span class="s">forking</span>&#x000A;<span class="py">PIDFile</span><span class="p">=</span><span class="s">/srv/solr/solr.pid</span>&#x000A;&#x000A;<span class="nn">[Install]</span>&#x000A;<span class="py">WantedBy</span><span class="p">=</span><span class="s">multi-user.target</span>&#x000A;</code></pre>
+<p>Make a <tt>/srv/solr/start.sh</tt> script that we can call on:</p>
+<pre class="highlight shell"><code><span class="c">#!/bin/bash</span>&#x000A;&#x000A;<span class="nv">SOLR_ROOT</span><span class="o">=</span>/srv/solr&#x000A;<span class="nv">PID_FILE</span><span class="o">=</span><span class="nv">$SOLR_ROOT</span>/solr.pid&#x000A;&#x000A;<span class="nb">cd</span> <span class="nv">$SOLR_ROOT</span>&#x000A;&#x000A;<span class="nb">exec </span>java -jar start.jar &gt;/dev/null 2&gt;&amp;1 &amp;&#x000A;<span class="nv">PID</span><span class="o">=</span><span class="nv">$!</span>&#x000A;<span class="nb">echo</span> <span class="nv">$PID</span> &gt; <span class="nv">$PID_FILE</span>&#x000A;</code></pre>
+<p>Give <tt>start.sh</tt> the execute bit:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>chmod +x /srv/solr/start.sh&#x000A;</code></pre>
+<p>Enable and start the service:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>systemctl <span class="nb">enable </span>solrd&#x000A;<span class="gp">$ </span>systemctl is-enabled solrd&#x000A;enabled&#x000A;<span class="gp">$ </span>systemctl start solrd&#x000A;</code></pre>
+<p>If you are running an OS that doesn't use <tt>systemd</tt>, you will want to fork a daemon calling <tt>/srv/solr/start.sh</tt> through whatever facility your OS uses to launch boot dependencies (sysvinit, upstart, etc...).</p>
+<p class='info'><b>Note</b> Ubuntu has used <tt>upstart</tt> for a few years, but has switched to <tt>systemd</tt> starting with Ubuntu 15.04 (Vivid Vervet).</p>
+<h3>Setting up Drupal</h3>
+<h4>Module Installation</h4>
+<p>Install and enable the following modules:</p>
+<ul>
+  <li><a href="https://www.drupal.org/project/search_api">Search API</a></li>
+  <li><a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search</a></li>
+  <li><a href="https://www.drupal.org/project/search_api_multi">Search API multi-index searches</a></li>
+</ul>
+<h4>Set up a Server</h4>
+<p>Like so:</p>
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_server1.jpg" />
+<p>Once you select the "Solr service" service class, you will get the following configuration options:</p>
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_server2.jpg" />
+<h4>Set up an Index</h4>
+<p>Once you've created a server, it's time to add an index or two.</p>
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index1.jpg" />
+<p>Next, we'll select the fields to index.  Choices here will vary depending on the search needs of your particular site, but "Title", and "Body text" are good defaults at a minimum.  Any fields available across the item type selected are available.</p>
+<p>After checking off a checkmark for a field you want to index, the type should almost always stay as it is.  If you want to give a certain field precedence, increase its "Boost" value.  I'm going to make the title more important as a search term.  Note that you can only boost fulltext fields.</p>
+<p>When you're done selecting fields that should be indexed, save and proceed to define data alterations and processors.</p>
+<p class='warning'><b>Note</b> Most of the alterations and processors will only work if the Solr configuration files provided along with the Search API Solr Search module were set up correctly.</p>
+<p>Read through all the different options.  I highly reccommend most people exclude unublished nodes:</p>
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index2.jpg" />
+<p>Enable appropriate processors to your heart's content:</p>
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index3.jpg" />
+<p>After saving the configuration, you will have successfully added a search index.  You may wish to add another index for additional item types that need to be indexed.</p>
+<h4>Creating a search page view</h4>
+<p>We want to be able to combine multiple indexes into a unified search page in this section.</p>
+<p>Go to create a new view.  Give it a descriptive name and show "Multi-index search."</p>
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view1.jpg" />
+<p>Add fields, filter criteria, and sort criteria.</p>
+<h4>Fields</h4>
+<p>With two different indexes, I added the fields that I'd like to show from both indexes.  For each result returned, the fields corresponding only to the type of the result will be displayed.  For example, when the search result being iterated over came from the "Searchable Profiles" index, only the "Searchable Profile" fields will be rendered, while the "Searchable Content" fields will be skipped.</p>
+<h4>Exposed form</h4>
+<p>Under "Advanced," I put my exposed form in a block so that I can choose where to place the search form through the blocks layout system.  For 'exposed form style,' I changed the form to "Input required" so that no results are shown until a search term is entered.  Otherwise, the search page will show <b>every</b> result by default.</p>
+<h4>Wrap-up</h4>
+<p>That's really all there is to it to the view configuration.  My view configuration now looks like this from the top level:</p>
+<a href="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg"><img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg" />
+</a>
+<p>I've included an export of my view as well.  Even though it can't be used "as-is" because the machine names that it references are not relevant, it might still be of some additional guidance while setting up a view of your own.  Here is the <a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search.php">link</a>.</p>
+<h3>List of Links</h3>
+<ul>
+  <li><a href="http://lucene.apache.org/solr/">Apache Solr</a></li>
+  <li><a href="https://www.drupal.org/project/search_api">Search API</a></li>
+  <li><a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search</a></li>
+  <li><a href="https://www.drupal.org/project/search_api_multi">Search API multi-index searches</a></li>
+  <li><a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search.php">An export of my search view</a></li>
+</ul>
+
+		  	</article>	
+			</div>
+  	</div>
+  </body>
+</html>

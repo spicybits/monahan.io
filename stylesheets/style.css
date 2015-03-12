@@ -7,21 +7,39 @@ body {
   font: 18px/1.5em "Helvetica Neue", Helvetica, sans-serif; }
 
 /* line 9, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
-h1, h2, h2, h4, h5, h6, p {
+h1, h2, h2 {
   font-weight: 200; }
 
-/* line 16, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 12, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+h4, h5, h6 {
+  font-weight: 500; }
+
+/* line 15, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+p {
+  font-weight: 200; }
+
+/* line 20, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+a {
+  color: #206682; }
+  /* line 22, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  a:hover {
+    color: #3aa4ce; }
+  /* line 25, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  a:visited {
+    color: #164659; }
+
+/* line 33, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 .container {
   padding: 90px 20px 20px 20px; }
 
-/* line 26, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 43, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 #sidebar-wrapper {
   width: 100%;
   height: 70px;
   border-bottom: 1px solid #DABF97;
   background-color: blanchedalmond;
   position: fixed; }
-  /* line 32, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 49, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   #sidebar-wrapper footer {
     visibility: hidden;
     /* display only at larger viewports */
@@ -33,7 +51,7 @@ h1, h2, h2, h4, h5, h6, p {
     text-align: right;
     bottom: 20px;
     left: 0; }
-    /* line 42, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+    /* line 59, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
     #sidebar-wrapper footer h2 {
       font-weight: 200;
       background-color: #fff;
@@ -41,47 +59,48 @@ h1, h2, h2, h4, h5, h6, p {
       margin: 20px 0 20px 29px;
       padding: 0.2em; }
 
-/* line 51, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 68, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 #sidebar {
   padding: 20px; }
-  /* line 53, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 70, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   #sidebar h2.name {
     float: left;
-    margin: 0; }
-    /* line 56, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+    margin: 0;
+    font-weight: 200; }
+    /* line 74, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
     #sidebar h2.name a {
       color: inherit;
       text-decoration: inherit; }
-      /* line 59, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+      /* line 77, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
       #sidebar h2.name a:hover {
         color: #474747; }
 
-/* line 66, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
-.note, .warning {
+/* line 84, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+.note, .info, .warning {
   padding: 10px; }
 
-/* line 69, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
-.note {
+/* line 87, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+.note, .info {
   border: 2px solid #F5D0A9;
   background-color: #CEF6D8; }
 
-/* line 73, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 91, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 .warning {
   border: 2px solid #F58779;
   background-color: #BF4212;
   color: #f2f2f2; }
-  /* line 77, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 95, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .warning a, .warning a:visited {
     color: #b3b3b3; }
-    /* line 79, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+    /* line 97, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
     .warning a:hover, .warning a:visited:hover {
       color: #8c8c8c; }
 
-/* line 85, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 103, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 span.mark {
   float: right; }
 
-/* line 89, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 107, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 span.github-mark {
   background: url("/images/GitHub-Mark-120px-plus.png");
   background-size: 32px 32px;
@@ -90,11 +109,11 @@ span.github-mark {
   width: 32px;
   height: 32px; }
 
-/* line 98, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 116, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 path, .path, .line {
   stroke: #fff; }
 
-/* line 102, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 120, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 hr.flared {
   height: 30px;
   border-style: solid;
@@ -102,7 +121,7 @@ hr.flared {
   border-width: 1px 0 0 0;
   border-radius: 20px;
   margin-bottom: -15px; }
-  /* line 109, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 127, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   hr.flared:before {
     display: block;
     content: "";
@@ -116,70 +135,79 @@ hr.flared {
 /*
  * blog stuff
  */
-/* line 127, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 145, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 .articles article h1.title {
   font-size: 22px; }
-  /* line 129, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 147, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .articles article h1.title a {
     text-decoration: none; }
-  /* line 132, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 150, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .articles article h1.title time {
     float: right;
     font-size: 18px;
     color: #3F424F; }
 
-/* line 142, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 160, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 article .title {
   margin-bottom: 10px;
   padding-bottom: 0; }
-/* line 146, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 164, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 article .date {
   margin-top: 0;
   padding-top: 0; }
-/* line 150, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 168, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 article ul.tags {
   font-size: 15px;
   list-style-type: none;
   padding: 0 10px 0 0; }
-  /* line 154, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 172, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   article ul.tags li {
     display: inline-block;
     margin: 0 5px 0 0; }
-/* line 159, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+/* line 177, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
 article h1, article h2, article h3, article h4, article h5, article h6 {
   margin-bottom: -10px; }
+/* line 180, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+article img {
+  width: 100%; }
+/* line 183, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+article a img {
+  border: 1px solid white; }
+  /* line 185, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  article a img:hover {
+    border: 1px solid #206682; }
 
 /*
  * Let's make this party responsive!
  */
 @media (min-width: 600px) {
-  /* line 172, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 199, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .content {
     width: 560px;
     margin: 0 auto; } }
 @media (min-width: 900px) {
-  /* line 179, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 206, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .container {
     padding-left: 240px; }
 
-  /* line 182, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 209, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   #sidebar-wrapper {
     width: 240px;
     height: 100vh;
     border-bottom: none;
     border-right: 1px solid #DABF97; }
-    /* line 187, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+    /* line 214, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
     #sidebar-wrapper footer {
       visibility: visible; }
 
-  /* line 192, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 219, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   #sidebar h2.name {
     margin: 20px 0; }
 
-  /* line 196, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 223, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   span.mark {
     float: none; } }
 @media (min-width: 1100px) {
-  /* line 202, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
+  /* line 229, /Users/liam/code/monahan.io/source/stylesheets/style.scss */
   .content {
     width: 700px; } }
