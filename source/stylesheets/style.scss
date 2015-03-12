@@ -6,8 +6,25 @@ body {
   font: 18px/1.5em "Helvetica Neue", Helvetica, sans-serif;
 }
 
-h1, h2, h2, h4, h5, h6, p {
+h1, h2, h2 {
   font-weight: 200;
+}
+h4, h5, h6 {
+  font-weight: 500;
+}
+p {
+  font-weight: 200;
+}
+
+$link_color: #206682;
+a {
+  color: $link_color;
+  &:hover {
+    color: lighten($link_color, 20%);
+  }
+  &:visited {
+    color: darken($link_color, 10%);
+  }
 }
 
 $sidebar_width: 240px;
@@ -53,6 +70,7 @@ $sidebar_border_color: #DABF97;
 	h2.name {
     float: left;
     margin: 0;
+    font-weight: 200;
 		a {
 		  color: inherit;
 		  text-decoration: inherit;
@@ -63,10 +81,10 @@ $sidebar_border_color: #DABF97;
 	}
 }
 
-.note, .warning {
+.note, .info, .warning {
 	padding: 10px;
 }
-.note {
+.note, .info {
 	border: 2px solid #F5D0A9;
 	background-color: #CEF6D8;
 }
@@ -158,6 +176,15 @@ article {
 	}
   h1, h2, h3, h4, h5, h6 {
     margin-bottom: -10px;
+  }
+  img {
+    width: 100%;
+  }
+  a img {
+    border: 1px solid white;
+    &:hover {
+      border: 1px solid $link_color;
+    }
   }
 }
 
