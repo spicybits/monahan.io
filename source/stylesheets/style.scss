@@ -3,10 +3,10 @@ html {
 }
 
 body {
-  font: 18px/1.5em "Helvetica Neue", Helvetica, sans-serif;
+  font: 16px/1.4em "Helvetica Neue", Helvetica, sans-serif;
 }
 
-h1, h2, h2 {
+h1, h2, h3 {
   font-weight: 200;
 }
 h4, h5, h6 {
@@ -113,10 +113,6 @@ span.github-mark {
 	height: 32px;
 }
 
-path, .path, .line {
-  stroke: #fff;
-}
-
 hr.flared {
   height: 30px;
   border-style: solid;
@@ -136,6 +132,18 @@ hr.flared {
   }
 }
 
+
+footer {
+    background-color: #37465F;
+    color: #fff;
+    height: 150px;
+    width: 100vw;
+    padding: 20px 0;
+    -webkit-background-clip: border-box;
+    -webkit-background-origin: padding-box;
+    -webkit-background-size: auto;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;
+}
 
 /*
  * blog stuff
@@ -158,10 +166,13 @@ hr.flared {
 
 article {
 	.title {
-    margin-bottom: 10px;
+        margin-bottom: 10px;
 		padding-bottom: 0;
 	}
 	.date {
+        font-weight: 200;
+        font-size: 14px;
+        color: #455069;
 		margin-top: 0;
 		padding-top: 0;
 	}
@@ -203,30 +214,13 @@ article {
 }
 
 @media (min-width: 900px) {
-  .container {
-    padding-left: $sidebar_width;
-  }
-  #sidebar-wrapper {
-    width: $sidebar_width;
-    height: 100vh;
-    border-bottom: none;
-    border-right: $sidebar_border_width $sidebar_border_stroke $sidebar_border_color;
-    footer {
-      visibility: visible;
-    }
-  }
-  #sidebar {
-    h2.name {
-      margin: 20px 0;
-    }
-  }
-  span.mark {
-    float: none;
+  .content {
+    width: 700px;
   }
 }
 
 @media (min-width: 1100px) {
   .content {
-    width: 700px;
+    width: 800px;
   }
 }
