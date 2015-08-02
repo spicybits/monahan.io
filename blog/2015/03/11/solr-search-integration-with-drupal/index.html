@@ -41,8 +41,7 @@
 <hr>
 <h3>Setting up Solr</h3>
 <p>This tutorial is going to assume that you're working in a UNIX environment.  I'll be using a RHEL7 machine.</p>
-<p class='info'>Solr is a Java application, so grab a Java Runtime if you don't have one installed already.</p>
-<p><a href="http://lucene.apache.org/solr/">Solr</a> is written in Java, so there are a few different options for deployment.  There's a standalone server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.  We are going to use the standalone server.</p>
+<p><a href="http://lucene.apache.org/solr/">Solr</a> is a Java application, so grab a Java Runtime if you don't have one installed already.  There are a few different options for deployment.  There's a standalone server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.  We are going to use the standalone server.</p>
 <p class='warning'><b>Note:</b> The <a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search module</a> currently only supports Solr 3.x and 4.x, so we are going to roll with Solr 4.9.0, even though 5.x just came out.</p>
 <p>First, let's go and download Solr 4.9.0 and extract it.</p>
 <pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /tmp&#x000A;<span class="gp">$ </span>wget https://archive.apache.org/dist/lucene/solr/4.9.0/solr-4.9.0.tgz&#x000A;<span class="gp">$ </span>tar xzf solr-4.9.0.tgz&#x000A;</code></pre>
