@@ -1,10 +1,10 @@
 ---
-title: Recreating Ben Frankin's Schedule in LaTeX
+title: Recreating Ben Franklin's Schedule in LaTeX
 date: 2015-10-03 14:13 UTC
 tags: latex
 ---
 
-![My schedule](2015-10-03-recreating-ben-frankin-s-schedule-in-latex/daily-schedule.png)
+![My schedule](2015-10-03-recreating-ben-franklin-s-schedule-in-latex/daily-schedule.png)
 
 It may well be true that a thing of beauty is a joy forever.
 
