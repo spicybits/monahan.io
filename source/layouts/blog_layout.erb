@@ -26,7 +26,7 @@
 	  	</footer>
 		</div>
   	<div class="container">
-  		<div class="content">
+  		<div class="content main-content">
 			  <%= link_to '< Back to all posts', '/blog' %>
 				<article>
 				  <h2 class="title"><%= current_page.data.title %></h2>
@@ -43,5 +43,6 @@
 		  	</article>	
 			</div>
   	</div>
+    <%= partial "footer" %>
   </body>
 </html>

@@ -26,19 +26,13 @@
     	</footer>
   	</div>
   	<div class="container">
-  		<div class="content">
+  		<div class="content main-content">
 		  <h2><%= current_page.data.title %></h2>
 		  <hr class="flared" />
   	      <%= yield %>
   		</div>
   	</div>
-    <footer>
-    <div class="content">
-        <h3>Liam Monahan</h3>
-        <p>Python, Philosophy, open roads.</p>
-        <a href="https://github.com/liammonahan"><span class="mark github-mark"></span></a>
-      </div>
-    </footer>
+    <%= partial "footer" %>
   </body>
 
   <%= partial "analytics" %>
