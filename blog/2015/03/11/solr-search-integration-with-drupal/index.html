@@ -11,15 +11,15 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>Solr Search Integration on Drupal</title>
     
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/style.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/syntax-highlight.css" rel="stylesheet" type="text/css" />
-    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/style.css" rel="stylesheet" /><link href="/stylesheets/syntax-highlight.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
   </head>
   
   <body class="blog blog_2015 blog_2015_03 blog_2015_03_11 blog_2015_03_11_solr-search-integration-with-drupal blog_2015_03_11_solr-search-integration-with-drupal_index">
 	  <div id="sidebar-wrapper">
 			<div id="sidebar">
 				<h2 class="name"><a href="/">Liam Monahan</a></h2>
-				<a href="https://github.com/liammonahan"><span class="mark github-mark"></span></a>
+				<a href="https://github.com/spicybits"><span class="mark github-mark"></span></a>
 			</div>
 	    <footer>
 	  		<h2>monahan.io</h2>
@@ -73,25 +73,25 @@
 </ul>
 <h4>Set up a Server</h4>
 <p>Like so:</p>
-<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_server1.jpg" />
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_server1.jpg" alt="Add server1" />
 <p>Once you select the "Solr service" service class, you will get the following configuration options:</p>
-<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_server2.jpg" />
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_server2.jpg" alt="Add server2" />
 <h4>Set up an Index</h4>
 <p>Once you've created a server, it's time to add an index or two.</p>
-<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index1.jpg" />
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index1.jpg" alt="Add index1" />
 <p>Next, we'll select the fields to index.  Choices here will vary depending on the search needs of your particular site, but "Title", and "Body text" are good defaults at a minimum.  Any fields available across the item type selected are available.</p>
 <p>After checking off a checkmark for a field you want to index, the type should almost always stay as it is.  If you want to give a certain field precedence, increase its "Boost" value.  I'm going to make the title more important as a search term.  Note that you can only boost fulltext fields.</p>
 <p>When you're done selecting fields that should be indexed, save and proceed to define data alterations and processors.</p>
 <p class='warning'><b>Note</b> Most of the alterations and processors will only work if the Solr configuration files provided along with the Search API Solr Search module were set up correctly.</p>
 <p>Read through all the different options.  I highly reccommend most people exclude unublished nodes:</p>
-<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index2.jpg" />
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index2.jpg" alt="Add index2" />
 <p>Enable appropriate processors to your heart's content:</p>
-<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index3.jpg" />
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/add_index3.jpg" alt="Add index3" />
 <p>After saving the configuration, you will have successfully added a search index.  You may wish to add another index for additional item types that need to be indexed.</p>
 <h4>Creating a search page view</h4>
 <p>We want to be able to combine multiple indexes into a unified search page in this section.</p>
 <p>Go to create a new view.  Give it a descriptive name and show "Multi-index search."</p>
-<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view1.jpg" />
+<img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view1.jpg" alt="Search view1" />
 <p>Add fields, filter criteria, and sort criteria.</p>
 <h4>Fields</h4>
 <p>With two different indexes, I added the fields that I'd like to show from both indexes.  For each result returned, the fields corresponding only to the type of the result will be displayed.  For example, when the search result being iterated over came from the "Searchable Profiles" index, only the "Searchable Profile" fields will be rendered, while the "Searchable Content" fields will be skipped.</p>
@@ -99,16 +99,16 @@
 <p>Under "Advanced," I put my exposed form in a block so that I can choose where to place the search form through the blocks layout system.  For 'exposed form style,' I changed the form to "Input required" so that no results are shown until a search term is entered.  Otherwise, the search page will show <b>every</b> result by default.</p>
 <h4>Wrap-up</h4>
 <p>That's really all there is to it to the view configuration.  My view configuration now looks like this from the top level:</p>
-<a href="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg"><img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg" />
+<a href="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg"><img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg" alt="Search view2" />
 </a>
-<p>I've included an export of my view as well.  Even though it can't be used "as-is" because the machine names that it references are not relevant, it might still be of some additional guidance while setting up a view of your own.  Here is the <a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search.php">link</a>.</p>
+<p>I've included an export of my view as well.  Even though it can't be used "as-is" because the machine names that it references are not relevant, it might still be of some additional guidance while setting up a view of your own.  Here is the <a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search/">link</a>.</p>
 <h3>List of Links</h3>
 <ul>
   <li><a href="http://lucene.apache.org/solr/">Apache Solr</a></li>
   <li><a href="https://www.drupal.org/project/search_api">Search API</a></li>
   <li><a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search</a></li>
   <li><a href="https://www.drupal.org/project/search_api_multi">Search API multi-index searches</a></li>
-  <li><a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search.php">An export of my search view</a></li>
+  <li><a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search/">An export of my search view</a></li>
 </ul>
 
                     
@@ -133,10 +133,10 @@
     <div class="container">
       <div class="content">
         <h3>Liam Monahan</h3>
-        <p>Python, Philosophy, open roads.</p>
-        <a href="https://github.com/liammonahan"><span class="mark github-mark"></span></a>
+        <a href="https://github.com/spicybits"><span class="mark github-mark"></span></a>
       </div>
     </div>
     </footer>
+
   </body>
 </html>
