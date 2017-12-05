@@ -44,32 +44,32 @@
 <p><a href="http://lucene.apache.org/solr/">Solr</a> is a Java application, so grab a Java Runtime if you don't have one installed already.  There are a few different options for deployment.  There's a standalone server that ships with Solr or you can deploy with Tomcat if you've got an existing Tomcat webapp strategy.  We are going to use the standalone server.</p>
 <p class='warning'><b>Note:</b> The <a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search module</a> currently only supports Solr 3.x and 4.x, so we are going to roll with Solr 4.9.0, even though 5.x just came out.</p>
 <p>First, let's go and download Solr 4.9.0 and extract it.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /tmp&#x000A;<span class="gp">$ </span>wget https://archive.apache.org/dist/lucene/solr/4.9.0/solr-4.9.0.tgz&#x000A;<span class="gp">$ </span>tar xzf solr-4.9.0.tgz&#x000A;</code></pre>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">cd</span> /tmp&#x000A;<span class="nv">$ </span>wget https://archive.apache.org/dist/lucene/solr/4.9.0/solr-4.9.0.tgz&#x000A;<span class="nv">$ </span><span class="nb">tar </span>xzf solr-4.9.0.tgz&#x000A;</code></pre></div>
 <p>Great!  Everything got extracted into <tt>/tmp/solr-4.9.0/</tt>.  There's lots of interesting stuff inside, but we are mainly interested in <tt>./example/</tt>.</p>
 <p>Copy <tt>/tmp/solr-4.9.0/example/</tt> somewhere less transitory.  I like using <tt>/srv/</tt> for this kind of thing, but <em>you do you</em>.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>mkdir /srv <span class="o">&amp;&amp;</span> cp -r /tmp/solr-4.9.0/example/ /srv/solr/&#x000A;</code></pre>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mkdir /srv <span class="o">&amp;&amp;</span> cp <span class="nt">-r</span> /tmp/solr-4.9.0/example/ /srv/solr/&#x000A;</code></pre></div>
 <h3>Setting up Solr to work with Drupal</h3>
 <p>The Search API Solr module contains configuration files to be used with Solr.  Configuration for each Solr collection is held in the <tt>conf</tt> subdirectory.  Let's download the module and move the configs into place.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /tmp <span class="o">&amp;&amp;</span> wget http://ftp.drupal.org/files/projects/search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="gp">$ </span>tar xzf search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="gp">$ </span>cp /tmp/search_api_solr/solr-conf/4.x/<span class="k">*</span> /srv/solr/solr/collection1/conf/&#x000A;</code></pre>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">cd</span> /tmp <span class="o">&amp;&amp;</span> wget http://ftp.drupal.org/files/projects/search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="nv">$ </span><span class="nb">tar </span>xzf search_api_solr-7.x-1.6.tar.gz&#x000A;<span class="nv">$ </span>cp /tmp/search_api_solr/solr-conf/4.x/<span class="k">*</span> /srv/solr/solr/collection1/conf/&#x000A;</code></pre></div>
 <p>We <b><em>could</em></b> start Solr by running:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">cd</span> /srv/solr <span class="o">&amp;&amp;</span> java -jar start.jar &#x000A;</code></pre>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">cd</span> /srv/solr <span class="o">&amp;&amp;</span> java <span class="nt">-jar</span> start.jar &#x000A;</code></pre></div>
 <p>If you're running CentOS/RHEL, make a <tt>systemd</tt> service script while you're at it to start/stop/reload the service by populating <tt>/etc/systemd/system/solrd.service</tt> as follows:</p>
-<pre class="highlight ini"><code><span class="nn">[Unit]</span>&#x000A;<span class="py">Description</span><span class="p">=</span><span class="s">Apache Solr Service</span>&#x000A;<span class="py">After</span><span class="p">=</span><span class="s">network.target</span>&#x000A;&#x000A;<span class="nn">[Service]</span>&#x000A;<span class="py">ExecStart</span><span class="p">=</span><span class="s">/srv/solr/start.sh</span>&#x000A;<span class="py">Type</span><span class="p">=</span><span class="s">forking</span>&#x000A;<span class="py">PIDFile</span><span class="p">=</span><span class="s">/srv/solr/solr.pid</span>&#x000A;&#x000A;<span class="nn">[Install]</span>&#x000A;<span class="py">WantedBy</span><span class="p">=</span><span class="s">multi-user.target</span>&#x000A;</code></pre>
+<div class="highlight"><pre class="highlight ini"><code><span class="nn">[Unit]</span>&#x000A;<span class="py">Description</span><span class="p">=</span><span class="s">Apache Solr Service</span>&#x000A;<span class="py">After</span><span class="p">=</span><span class="s">network.target</span>&#x000A;&#x000A;<span class="nn">[Service]</span>&#x000A;<span class="py">ExecStart</span><span class="p">=</span><span class="s">/srv/solr/start.sh</span>&#x000A;<span class="py">Type</span><span class="p">=</span><span class="s">forking</span>&#x000A;<span class="py">PIDFile</span><span class="p">=</span><span class="s">/srv/solr/solr.pid</span>&#x000A;&#x000A;<span class="nn">[Install]</span>&#x000A;<span class="py">WantedBy</span><span class="p">=</span><span class="s">multi-user.target</span>&#x000A;</code></pre></div>
 <p>Make a <tt>/srv/solr/start.sh</tt> script that we can call on:</p>
-<pre class="highlight shell"><code><span class="c">#!/bin/bash</span>&#x000A;&#x000A;<span class="nv">SOLR_ROOT</span><span class="o">=</span>/srv/solr&#x000A;<span class="nv">PID_FILE</span><span class="o">=</span><span class="nv">$SOLR_ROOT</span>/solr.pid&#x000A;&#x000A;<span class="nb">cd</span> <span class="nv">$SOLR_ROOT</span>&#x000A;&#x000A;<span class="nb">exec </span>java -jar start.jar &gt;/dev/null 2&gt;&amp;1 &amp;&#x000A;<span class="nv">PID</span><span class="o">=</span><span class="nv">$!</span>&#x000A;<span class="nb">echo</span> <span class="nv">$PID</span> &gt; <span class="nv">$PID_FILE</span>&#x000A;</code></pre>
+<div class="highlight"><pre class="highlight shell"><code><span class="c">#!/bin/bash</span>&#x000A;&#x000A;<span class="nv">SOLR_ROOT</span><span class="o">=</span>/srv/solr&#x000A;<span class="nv">PID_FILE</span><span class="o">=</span><span class="nv">$SOLR_ROOT</span>/solr.pid&#x000A;&#x000A;<span class="nb">cd</span> <span class="nv">$SOLR_ROOT</span>&#x000A;&#x000A;<span class="nb">exec </span>java <span class="nt">-jar</span> start.jar <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp;&#x000A;<span class="nv">PID</span><span class="o">=</span><span class="nv">$!</span>&#x000A;<span class="nb">echo</span> <span class="nv">$PID</span> <span class="o">&gt;</span> <span class="nv">$PID_FILE</span>&#x000A;</code></pre></div>
 <p>Give <tt>start.sh</tt> the execute bit:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>chmod +x /srv/solr/start.sh&#x000A;</code></pre>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>chmod +x /srv/solr/start.sh&#x000A;</code></pre></div>
 <p>Enable and start the service:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>systemctl <span class="nb">enable </span>solrd&#x000A;<span class="gp">$ </span>systemctl is-enabled solrd&#x000A;enabled&#x000A;<span class="gp">$ </span>systemctl start solrd&#x000A;</code></pre>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>systemctl <span class="nb">enable </span>solrd&#x000A;<span class="nv">$ </span>systemctl is-enabled solrd&#x000A;enabled&#x000A;<span class="nv">$ </span>systemctl start solrd&#x000A;</code></pre></div>
 <p>If you are running an OS that doesn't use <tt>systemd</tt>, you will want to fork a daemon calling <tt>/srv/solr/start.sh</tt> through whatever facility your OS uses to launch boot dependencies (sysvinit, upstart, etc...).</p>
 <p class='info'><b>Note</b> Ubuntu has used <tt>upstart</tt> for a few years, but has switched to <tt>systemd</tt> starting with Ubuntu 15.04 (Vivid Vervet).</p>
 <h3>Setting up Drupal</h3>
 <h4>Module Installation</h4>
 <p>Install and enable the following modules:</p>
 <ul>
-  <li><a href="https://www.drupal.org/project/search_api">Search API</a></li>
-  <li><a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search</a></li>
-  <li><a href="https://www.drupal.org/project/search_api_multi">Search API multi-index searches</a></li>
+<li><a href="https://www.drupal.org/project/search_api">Search API</a></li>
+<li><a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search</a></li>
+<li><a href="https://www.drupal.org/project/search_api_multi">Search API multi-index searches</a></li>
 </ul>
 <h4>Set up a Server</h4>
 <p>Like so:</p>
@@ -100,15 +100,14 @@
 <h4>Wrap-up</h4>
 <p>That's really all there is to it to the view configuration.  My view configuration now looks like this from the top level:</p>
 <a href="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg"><img src="/blog/2015/03/11/solr-search-integration-with-drupal/screenshots/search_view2.jpg" alt="Search view2" />
-</a>
-<p>I've included an export of my view as well.  Even though it can't be used "as-is" because the machine names that it references are not relevant, it might still be of some additional guidance while setting up a view of your own.  Here is the <a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search/">link</a>.</p>
+</a><p>I've included an export of my view as well.  Even though it can't be used "as-is" because the machine names that it references are not relevant, it might still be of some additional guidance while setting up a view of your own.  Here is the <a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search/">link</a>.</p>
 <h3>List of Links</h3>
 <ul>
-  <li><a href="http://lucene.apache.org/solr/">Apache Solr</a></li>
-  <li><a href="https://www.drupal.org/project/search_api">Search API</a></li>
-  <li><a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search</a></li>
-  <li><a href="https://www.drupal.org/project/search_api_multi">Search API multi-index searches</a></li>
-  <li><a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search/">An export of my search view</a></li>
+<li><a href="http://lucene.apache.org/solr/">Apache Solr</a></li>
+<li><a href="https://www.drupal.org/project/search_api">Search API</a></li>
+<li><a href="https://www.drupal.org/project/search_api_solr">Search API Solr Search</a></li>
+<li><a href="https://www.drupal.org/project/search_api_multi">Search API multi-index searches</a></li>
+<li><a href="/blog/2015/03/11/solr-search-integration-with-drupal/my_custom_solr_search/">An export of my search view</a></li>
 </ul>
 
                     
