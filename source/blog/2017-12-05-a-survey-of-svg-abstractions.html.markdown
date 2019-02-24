@@ -2,7 +2,10 @@
 
 title: A Survey of SVG Abstractions
 date: 2017-12-05 13:05 UTC
-tags: svg art isamu noguchi
+tags:
+    - svg
+    - art
+    - isamu noguchi
 ---
 
 I saw my first Noguchi in February 2017 at the Smithsonian American Art
