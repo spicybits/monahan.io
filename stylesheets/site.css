@@ -410,7 +410,7 @@ html {
 
 /* line 8, site.css.scss */
 body {
-  font: 16px/1.4em "Helvetica Neue", Helvetica, sans-serif; }
+  font: 18px/1.6em avenir, Helvetica, sans-serif; }
 
 /* line 12, site.css.scss */
 h1, h2, h3 {
@@ -578,23 +578,28 @@ article .date {
   padding-top: 0; }
 /* line 183, site.css.scss */
 article ul.tags {
+  padding: 1px 7px;
   font-size: 15px;
   list-style-type: none;
-  padding: 0 10px 0 0; }
-  /* line 187, site.css.scss */
+  background: #f2e0a7;
+  border: 1px solid #f49d77; }
+  /* line 190, site.css.scss */
   article ul.tags li {
     display: inline-block;
     margin: 0 5px 0 0; }
-/* line 192, site.css.scss */
+  /* line 194, site.css.scss */
+  article ul.tags li.tag {
+    text-decoration: underline; }
+/* line 199, site.css.scss */
 article h1, article h2, article h3, article h4, article h5, article h6 {
   margin-bottom: -10px; }
-/* line 195, site.css.scss */
+/* line 202, site.css.scss */
 article img {
   width: 100%; }
-/* line 198, site.css.scss */
+/* line 205, site.css.scss */
 article a img {
   border: 1px solid white; }
-  /* line 200, site.css.scss */
+  /* line 207, site.css.scss */
   article a img:hover {
     border: 1px solid #206682; }
 
@@ -602,15 +607,15 @@ article a img {
  * Let's make this party responsive!
  */
 @media (min-width: 600px) {
-  /* line 214, site.css.scss */
+  /* line 221, site.css.scss */
   .content {
     width: 560px;
     margin: 0 auto; } }
 @media (min-width: 900px) {
-  /* line 221, site.css.scss */
+  /* line 228, site.css.scss */
   .content {
     width: 700px; } }
 @media (min-width: 1100px) {
-  /* line 227, site.css.scss */
+  /* line 234, site.css.scss */
   .content {
     width: 800px; } }
